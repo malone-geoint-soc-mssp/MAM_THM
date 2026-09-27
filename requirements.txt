@@ -1,0 +1,18 @@
+# ==============================================================================
+# MAM_THM - Dependências Principais de Automação, Redes e Auditoria
+# Autor: Eng. Malone Manuel
+# ==============================================================================
+
+# Protocolos de Rede e Comunicação HTTP
+requests>=2.31.0       # Cliente HTTP para requisições, fuzzing e interação com APIs
+urllib3>=2.2.0         # Gerenciamento e reuso de conexões HTTP de baixo nível
+scapy>=2.5.0           # Manipulação e análise de pacotes de rede em baixo nível (RAW Sockets)
+paramiko>=3.4.0        # Protocolo SSHv2 para automação de conexões e testes de força bruta
+
+# Automação Web Avançada & Browser Headless (Client-Side Testing)
+playwright>=1.40.0     # Automação de navegador Chromium/Firefox para validação de XSS e captura de evidências
+beautifulsoup4>=4.12.3 # Parser HTML/XML para extração de links, formulários e metadados
+
+# Integração com Toolchain Nativa e Utilitários de Rede
+python-nmap>=0.7.1     # Wrapper Python para execução e parsing estruturado de scans do Nmap
+netifaces>=0.11.0      # Mapeamento e inspeção de interfaces de rede (ETH, TUN0, Docker Bridge)

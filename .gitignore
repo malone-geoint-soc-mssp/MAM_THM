@@ -1,0 +1,21 @@
+# Arquivos de VPN, Chaves e Segredos
+*.ovpn
+*.pem
+*.key
+*.crt
+
+# Anotações brutas de auditoria e logs
+notes/raw_*
+*.log
+
+# Ambientes Virtuais Python
+__pycache__/
+*.py[cod]
+.venv/
+env/
+
+# Configurações do SO e IDE
+.vscode/*
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
