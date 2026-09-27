@@ -1,0 +1,52 @@
+version: '3.8'
+
+# ==============================================================================
+# MAM_THM - Arquitetura de Laboratório de Cibersegurança & SOC
+# Autor: Eng. Malone Manuel
+# ==============================================================================
+
+networks:
+  mam_thm_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${DOCKER_SUBNET}
+          gateway: ${DOCKER_GATEWAY}
+
+services:
+  # 🎯 Alvo 1: Damn Vulnerable Web Application (DVWA)
+  dvwa-target:
+    image: vulnerables/web-dvwa:latest
+    container_name: mam_dvwa_target
+    restart: unless-stopped
+    ports:
+      - "${DVWA_PORT}:80"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    networks:
+      mam_thm_net:
+        ipv4_address: ${IP_DVWA}
+
+  # 🎯 Alvo 2: OWASP Juice Shop
+  juiceshop-target:
+    image: bkimminich/juice-shop:latest
+    container_name: mam_juiceshop_target
+    restart: unless-stopped
+    ports:
+      - "${JUICESHOP_PORT}:3000"
+    networks:
+      mam_thm_net:
+        ipv4_address: ${IP_JUICESHOP}
+
+  # 🛡️ Ferramenta SOC: Centralized Log Monitor & HTTP Receiver
+  soc-log-analyzer:
+    image: kennethreitz/httpbin:latest
+    container_name: mam_soc_analyzer
+    restart: unless-stopped
+    ports:
+      - "${SOC_PORT}:80"
+    networks:
+      mam_thm_net:
+        ipv4_address: ${IP_SOC}

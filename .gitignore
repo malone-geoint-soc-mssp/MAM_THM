@@ -19,3 +19,4 @@ env/
 !.vscode/settings.json
 .DS_Store
 Thumbs.db
+.env
